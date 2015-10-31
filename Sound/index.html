@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="SoundCloud">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Filtros - ng-repeat</title>
+    <!-- Incluir Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Incluir AngularJS -->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <style>
+    .avatar {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .puntero {
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-controller="SoundCloudCtrl">
+        <h1>Filtros</h1>
+        <h4>Para el ng-repeat</h4>
+        <hr>
+        <div class="row">
+            Busqueda:
+            <form ng-submit="search(topic)">
+            <input type="text" ng-model="topic" class="form-control">
+            <br>
+            <button class="btn btn-primary" >Buscar</button>
+            </form>
+            <br>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <tr>
+                    <th>Avatar</th>
+                    <th>Usuario</th>
+                    <th>Nombre de la pista</th>
+                    <th>Duracion</th>
+                    <th>Pista</th>
+                </tr>
+                <tr ng-repeat="item in respuesta ">
+                    <td><img ng-src="{{item.user.avatar_url}}" alt=""></td>
+                    <td>{{item.user.username}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.duration | date : 'm:ss'}}</td>
+                    <td><button class="btn btn-info" data-tracks="{{item.id}}" ng-click="loadAudio(item.id)">Escuchar</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- fin del listadoCtrl -->
+</body>
+
+</html>
